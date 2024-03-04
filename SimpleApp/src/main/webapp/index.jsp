@@ -46,13 +46,13 @@
         <p>Made by Thuan Vo</p>
         <br />
         <div class="buttonContainer">
-            <a href="page1">5 Images Page</a>
-            <a href="page2">3 Images Page</a>
-            <a href="page3">Random an Image</a>
-            <a href="page4">Load a Poem</a>
-            <a href="page5">Random 1000 Integer</a>
+            <a href="page1">All Images Page</a>
+            <a href="page2">4 Images Page</a>
+            <a href="page3">Randomize An Image</a>
+            <a href="page4">Display a Text</a>
+            <a href="page5">Random 1,000 Integers</a>
         </div>
-        <img src="getImage?name=hello.gif" alt="hello" />
+        <img src="getObject?name=hello.gif" alt="hello" />
     </body>
 
     </html>

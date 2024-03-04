@@ -1,97 +1,67 @@
-02-Mar-2024 14:36:50.267 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/10.1.19
-02-Mar-2024 14:36:50.270 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Feb 14 2024 19:36:50 UTC
-02-Mar-2024 14:36:50.270 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 10.1.19.0
-02-Mar-2024 14:36:50.270 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Mac OS X
-02-Mar-2024 14:36:50.270 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            14.0
-02-Mar-2024 14:36:50.270 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          aarch64
-02-Mar-2024 14:36:50.270 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home
-02-Mar-2024 14:36:50.270 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           21.0.1+12-LTS
-02-Mar-2024 14:36:50.270 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Azul Systems, Inc.
-02-Mar-2024 14:36:50.270 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19
-02-Mar-2024 14:36:50.270 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19
-02-Mar-2024 14:36:50.279 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/conf/logging.properties
-02-Mar-2024 14:36:50.280 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
-02-Mar-2024 14:36:50.280 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
-02-Mar-2024 14:36:50.280 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
-02-Mar-2024 14:36:50.280 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
-02-Mar-2024 14:36:50.280 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
-02-Mar-2024 14:36:50.280 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
-02-Mar-2024 14:36:50.280 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
-02-Mar-2024 14:36:50.280 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
-02-Mar-2024 14:36:50.280 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
-02-Mar-2024 14:36:50.280 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19
-02-Mar-2024 14:36:50.280 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19
-02-Mar-2024 14:36:50.280 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/temp
-02-Mar-2024 14:36:50.288 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [/Users/thuanvo/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
-02-Mar-2024 14:36:50.436 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
-02-Mar-2024 14:36:50.450 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [274] milliseconds
-02-Mar-2024 14:36:50.480 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
-02-Mar-2024 14:36:50.481 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/10.1.19]
-02-Mar-2024 14:36:50.485 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/docs]
-02-Mar-2024 14:36:50.651 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/docs] has finished in [165] ms
-02-Mar-2024 14:36:50.651 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/manager]
-02-Mar-2024 14:36:50.667 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/manager] has finished in [16] ms
-02-Mar-2024 14:36:50.667 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/examples]
-02-Mar-2024 14:36:50.771 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/examples] has finished in [104] ms
-02-Mar-2024 14:36:50.772 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/ROOT]
-02-Mar-2024 14:36:50.779 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/ROOT] has finished in [7] ms
-02-Mar-2024 14:36:50.779 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/host-manager]
-02-Mar-2024 14:36:50.789 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/host-manager] has finished in [10] ms
-02-Mar-2024 14:36:50.790 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
-02-Mar-2024 14:36:50.798 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [347] milliseconds
-02-Mar-2024 14:38:00.835 INFO [Catalina-utility-2] org.apache.catalina.users.MemoryUserDatabase.backgroundProcess Reloading memory user database [UserDatabase] from updated source [file:/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/conf/tomcat-users.xml]
-02-Mar-2024 14:38:17.089 INFO [main] org.apache.catalina.core.StandardServer.await A valid shutdown command was received via the shutdown port. Stopping the Server instance.
-02-Mar-2024 14:38:17.090 INFO [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
-02-Mar-2024 14:38:17.099 INFO [main] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
-02-Mar-2024 14:38:17.114 INFO [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
-02-Mar-2024 14:38:17.126 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
-02-Mar-2024 14:38:18.518 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/10.1.19
-02-Mar-2024 14:38:18.519 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Feb 14 2024 19:36:50 UTC
-02-Mar-2024 14:38:18.519 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 10.1.19.0
-02-Mar-2024 14:38:18.519 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Mac OS X
-02-Mar-2024 14:38:18.519 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            14.0
-02-Mar-2024 14:38:18.519 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          aarch64
-02-Mar-2024 14:38:18.520 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home
-02-Mar-2024 14:38:18.520 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           21.0.1+12-LTS
-02-Mar-2024 14:38:18.520 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Azul Systems, Inc.
-02-Mar-2024 14:38:18.520 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19
-02-Mar-2024 14:38:18.520 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19
-02-Mar-2024 14:38:18.525 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/conf/logging.properties
-02-Mar-2024 14:38:18.525 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
-02-Mar-2024 14:38:18.525 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
-02-Mar-2024 14:38:18.525 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
-02-Mar-2024 14:38:18.525 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
-02-Mar-2024 14:38:18.525 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
-02-Mar-2024 14:38:18.525 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
-02-Mar-2024 14:38:18.525 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
-02-Mar-2024 14:38:18.525 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
-02-Mar-2024 14:38:18.525 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
-02-Mar-2024 14:38:18.525 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19
-02-Mar-2024 14:38:18.525 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19
-02-Mar-2024 14:38:18.525 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/temp
-02-Mar-2024 14:38:18.529 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [/Users/thuanvo/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
-02-Mar-2024 14:38:18.665 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
-02-Mar-2024 14:38:18.677 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [232] milliseconds
-02-Mar-2024 14:38:18.693 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
-02-Mar-2024 14:38:18.693 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/10.1.19]
-02-Mar-2024 14:38:18.696 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/docs]
-02-Mar-2024 14:38:18.826 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/docs] has finished in [130] ms
-02-Mar-2024 14:38:18.826 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/manager]
-02-Mar-2024 14:38:18.842 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/manager] has finished in [16] ms
-02-Mar-2024 14:38:18.842 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/examples]
-02-Mar-2024 14:38:18.946 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/examples] has finished in [104] ms
-02-Mar-2024 14:38:18.947 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/ROOT]
-02-Mar-2024 14:38:18.954 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/ROOT] has finished in [7] ms
-02-Mar-2024 14:38:18.954 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/host-manager]
-02-Mar-2024 14:38:18.963 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/host-manager] has finished in [9] ms
-02-Mar-2024 14:38:18.965 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
-02-Mar-2024 14:38:18.969 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [292] milliseconds
-02-Mar-2024 14:40:10.840 INFO [Async0-Thread] async.Async0$1.run Putting AsyncThread to sleep
-02-Mar-2024 14:40:12.845 INFO [Async0-Thread] async.Async0$1.run Dispatching
-02-Mar-2024 14:40:12.849 INFO [http-nio-8080-exec-10] async.Async0.service Received dispatch, completing on the worker thread.
-02-Mar-2024 14:40:12.852 INFO [http-nio-8080-exec-10] async.Async0.service After complete called started:false
-03-Mar-2024 00:26:10.637 INFO [main] org.apache.catalina.core.StandardServer.await A valid shutdown command was received via the shutdown port. Stopping the Server instance.
-03-Mar-2024 00:26:10.652 INFO [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
-03-Mar-2024 00:26:10.674 INFO [main] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
-03-Mar-2024 00:26:10.745 INFO [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
-03-Mar-2024 00:26:10.755 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+04-Mar-2024 15:08:19.566 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/10.1.19
+04-Mar-2024 15:08:19.568 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Feb 14 2024 19:36:50 UTC
+04-Mar-2024 15:08:19.569 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 10.1.19.0
+04-Mar-2024 15:08:19.570 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Mac OS X
+04-Mar-2024 15:08:19.570 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            14.0
+04-Mar-2024 15:08:19.570 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          aarch64
+04-Mar-2024 15:08:19.570 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home
+04-Mar-2024 15:08:19.570 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           21.0.1+12-LTS
+04-Mar-2024 15:08:19.570 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Azul Systems, Inc.
+04-Mar-2024 15:08:19.570 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19
+04-Mar-2024 15:08:19.570 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19
+04-Mar-2024 15:08:19.574 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/conf/logging.properties
+04-Mar-2024 15:08:19.575 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+04-Mar-2024 15:08:19.575 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+04-Mar-2024 15:08:19.575 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+04-Mar-2024 15:08:19.575 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+04-Mar-2024 15:08:19.575 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+04-Mar-2024 15:08:19.575 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+04-Mar-2024 15:08:19.575 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+04-Mar-2024 15:08:19.575 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+04-Mar-2024 15:08:19.575 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+04-Mar-2024 15:08:19.575 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19
+04-Mar-2024 15:08:19.575 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19
+04-Mar-2024 15:08:19.575 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/temp
+04-Mar-2024 15:08:19.579 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [/Users/thuanvo/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+04-Mar-2024 15:08:19.715 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-3000"]
+04-Mar-2024 15:08:19.727 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [238] milliseconds
+04-Mar-2024 15:08:19.744 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+04-Mar-2024 15:08:19.744 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/10.1.19]
+04-Mar-2024 15:08:19.748 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/docs]
+04-Mar-2024 15:08:19.889 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/docs] has finished in [141] ms
+04-Mar-2024 15:08:19.889 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/manager]
+04-Mar-2024 15:08:19.905 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/manager] has finished in [16] ms
+04-Mar-2024 15:08:19.905 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/examples]
+04-Mar-2024 15:08:20.015 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/examples] has finished in [110] ms
+04-Mar-2024 15:08:20.016 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/ROOT]
+04-Mar-2024 15:08:20.023 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/ROOT] has finished in [7] ms
+04-Mar-2024 15:08:20.024 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/SimpleApp_war]
+04-Mar-2024 15:08:20.044 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/SimpleApp_war] has finished in [20] ms
+04-Mar-2024 15:08:20.044 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/assets]
+04-Mar-2024 15:08:20.050 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/assets] has finished in [6] ms
+04-Mar-2024 15:08:20.050 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/host-manager]
+04-Mar-2024 15:08:20.059 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/thuanvo/Local/GT/cs4675/P-HW4-Vo/apache-tomcat-10.1.19/webapps/host-manager] has finished in [9] ms
+04-Mar-2024 15:08:20.061 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-3000"]
+04-Mar-2024 15:08:20.066 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [338] milliseconds
+return object
+return object
+return object
+return object
+return object
+return object
+return object
+return object
+return object
+return object
+return object
+return object
+return object
+return object
+return object
+return object
+return object
+04-Mar-2024 15:27:28.162 INFO [main] org.apache.catalina.core.StandardServer.await A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+04-Mar-2024 15:27:28.163 INFO [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-3000"]
+04-Mar-2024 15:27:28.165 INFO [main] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+04-Mar-2024 15:27:28.183 INFO [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-3000"]
+04-Mar-2024 15:27:28.189 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-3000"]
