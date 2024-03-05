@@ -1,58 +1,27 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <!DOCTYPE html>
-    <html>
+<!DOCTYPE html>
+<html>
 
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>CS4675-HW4-P2</title>
-        <style>
-            body {
-                padding: 10px;
-            }
-            /* make <a> button */
-            a {
-                width: 100%;
-                max-width: 300px;
-                display: inline-block;
-                padding: 10px 20px 10px 20px;
-                border: 1px solid #000;
-                text-decoration: none;
-                color: #000;
-                background-color: #fff;
-                transition: 0.3s;
-                border-radius: 5px;
-            }
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS4675-HW4-P2</title>
+    <link rel="stylesheet" href="getObject?name=style.css">
+</head>
 
-            a:hover {
-                background-color: #000;
-                color: #fff;
-            }
+<body>
+<div class="buttonContainer">
+    <a href="page1">All Images Page</a>
+    <a href="page2">4 Images Page</a>
+    <a href="page3">Randomize An Image</a>
+    <a href="page4">Display a Text</a>
+    <a href="page5">Random 1,000 Integers</a>
+</div>
+<h1>CS 4675</h1>
+<h2>HW4 Problem 2 - Apache Tomcat</h2>
+<p>Made by Thuan Vo</p>
+<br/>
 
-            img {
-                width: 200px;
-                height: 200px;
-                border-radius: 5px;
-            }
+<img src="getObject?name=hello.gif" alt="hello"/>
+</body>
 
-            .buttonContainer {
-                display: flex; flex-flow: column; row-gap: 10px; margin-bottom: 2rem
-            }
-        </style>
-    </head>
-
-    <body>
-        <h1>CS 4675</h1>
-        <h2>HW4 Problem 2 - Apache Tomcat</h2>
-        <p>Made by Thuan Vo</p>
-        <br />
-        <div class="buttonContainer">
-            <a href="page1">All Images Page</a>
-            <a href="page2">4 Images Page</a>
-            <a href="page3">Randomize An Image</a>
-            <a href="page4">Display a Text</a>
-            <a href="page5">Random 1,000 Integers</a>
-        </div>
-        <img src="getObject?name=hello.gif" alt="hello" />
-    </body>
-
-    </html>
+</html>
