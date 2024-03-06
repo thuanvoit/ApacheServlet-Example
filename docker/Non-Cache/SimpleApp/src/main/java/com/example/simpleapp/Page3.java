@@ -36,7 +36,7 @@ public class Page3 extends HttpServlet {
         Object firstKey = Nav.images.keySet().toArray()[randomIndex];
 
         out.println("<div class='card'>");
-        out.println("<img src='" + Nav.getImageUrl(request, Nav.images.get(
+        out.println("<img src='" + Nav.getObjectUrl(request, Nav.images.get(
                 firstKey)) + "' alt='" + firstKey + "'/>");
 
         out.println("<p>" + firstKey + "</p>");

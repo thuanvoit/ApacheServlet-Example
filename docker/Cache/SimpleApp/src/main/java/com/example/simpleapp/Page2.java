@@ -31,20 +31,19 @@ public class Page2 extends HttpServlet {
 
         // display first 4 images
 
-        String[] images = new String[]{
-                "Vietnam",
-                "Waterfall",
-                "Bird",
-                "Aurora"
+        String[] images = new String[] {
+                "pic1.jpg",
+                "pic2.jpg",
+                "pic3.jpg",
+                "pic4.jpg",
         };
 
-        for (int i = 0; i <= images.length; i++) {
+        for (int i = 0; i < images.length; i++) {
             out.println("<div class='card'>");
-            out.println("<img src='" + Nav.getImageUrl(request, Nav.images.get(images[i])) + "' alt='pic" + i + "'/>");
-            out.println("<p>"+images[i]+"</p>");
+            out.println("<img src='" + Nav.getObjectUrl(request, images[i]) + "' alt='pic" + i + "'/>");
+            out.println("<p>" + images[i] + "</p>");
             out.println("</div>");
         }
-
 
         out.println("</div>");
         out.println("</body></html>");

@@ -31,7 +31,7 @@ public class Page1 extends HttpServlet {
 
         for (Map.Entry<String, String> image : Nav.images.entrySet()) {
             out.println("<div class='card'>");
-            out.println("<img src='" + Nav.getImageUrl(request, image.getValue()) + "' alt='" + image.getKey() + "'/>");
+            out.println("<img src='" + Nav.getObjectUrl(request, image.getValue()) + "' alt='" + image.getKey() + "'/>");
             out.println("<p>"+image.getKey()+"</p>");
             out.println("</div>");
         }

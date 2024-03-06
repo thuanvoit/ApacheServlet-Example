@@ -13,12 +13,11 @@ import java.io.IOException;
 
 @WebServlet(name = "getObject", value = "/getObject")
 
-public class GetObject extends HttpServlet
-{
+public class GetObject extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws IOException
-    {
+            throws IOException {
         String fileName = request.getParameter("name");
+        System.out.println("Return Object: " + fileName);
         String contentType = "text/plain";
         String storagePath = "/WEB-INF/text";
 
@@ -29,8 +28,7 @@ public class GetObject extends HttpServlet
                 || fileName.endsWith("jpeg")) {
             contentType = "image/jpeg";
             storagePath = "/WEB-INF/images";
-        }
-        else if (fileName.endsWith(".css")) {
+        } else if (fileName.endsWith(".css")) {
             contentType = "text/css";
             storagePath = "/WEB-INF/static";
         }
@@ -52,9 +50,8 @@ public class GetObject extends HttpServlet
         BufferedInputStream bin = new BufferedInputStream(fin);
         BufferedOutputStream bout = new BufferedOutputStream(out);
 
-        int ch =0;
-        while((ch=bin.read())!=-1)
-        {
+        int ch = 0;
+        while ((ch = bin.read()) != -1) {
             // display image
             bout.write(ch);
         }
@@ -65,6 +62,5 @@ public class GetObject extends HttpServlet
         bout.close();
         out.close();
 
-        System.out.println("return object");
     }
 }
