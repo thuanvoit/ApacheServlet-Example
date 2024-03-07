@@ -259,7 +259,7 @@ http://128.61.32.180:8080/SimpleApp
 
 ### Homepage: includes links to pages + a GIF image
 
-<img border: 1px solid #000; src="./img/mobile/homepage.PNG"  width=300 />
+<img style="border: 1px solid #000;" src="./img/mobile/homepage.PNG"  width=300 />
 
 ### Page 1: load all the images in images folder
 
