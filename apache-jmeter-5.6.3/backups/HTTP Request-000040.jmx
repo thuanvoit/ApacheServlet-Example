@@ -8,7 +8,7 @@
       </elementProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="SpeedTest 10 users in 5 mins">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="SpeedTest 10 users in 5 mins" enabled="false">
         <intProp name="ThreadGroup.num_threads">10</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <longProp name="ThreadGroup.duration">300</longProp>
@@ -141,7 +141,7 @@
           </objProp>
           <stringProp name="filename"></stringProp>
           <intProp name="RespTimeGraph.lineshapepoint">4</intProp>
-          <intProp name="RespTimeGraph.legendsize">5</intProp>
+          <intProp name="RespTimeGraph.legendsize">6</intProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph - SpeedTest 10 users in 5 mins">
@@ -315,7 +315,6 @@
           </objProp>
           <stringProp name="filename"></stringProp>
           <intProp name="RespTimeGraph.lineshapepoint">4</intProp>
-          <intProp name="RespTimeGraph.legendsize">5</intProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph - Stress Test 50 threads in 5 minutes">
@@ -489,7 +488,6 @@
           </objProp>
           <stringProp name="filename"></stringProp>
           <intProp name="RespTimeGraph.lineshapepoint">4</intProp>
-          <intProp name="RespTimeGraph.legendsize">5</intProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph - Stress Test 70 threads in 5 minutes">
@@ -663,7 +661,6 @@
           </objProp>
           <stringProp name="filename"></stringProp>
           <intProp name="RespTimeGraph.lineshapepoint">4</intProp>
-          <intProp name="RespTimeGraph.legendsize">5</intProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph - Stress Test 100 threads in 5 minutes">

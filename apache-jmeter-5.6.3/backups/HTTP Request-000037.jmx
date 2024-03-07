@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="HW4-Tests-NoCache">
-      <boolProp name="TestPlan.serialize_threadgroups">true</boolProp>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="HW4-Tests">
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
@@ -21,7 +20,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HomePage">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HomePage" enabled="true">
           <boolProp name="HTTPSampler.image_parser">true</boolProp>
           <stringProp name="HTTPSampler.domain">127.0.0.1</stringProp>
           <stringProp name="HTTPSampler.port">8080</stringProp>
@@ -91,7 +90,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Page5">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Page5" enabled="true">
           <boolProp name="HTTPSampler.image_parser">true</boolProp>
           <stringProp name="HTTPSampler.domain">127.0.0.1</stringProp>
           <stringProp name="HTTPSampler.port">8080</stringProp>
@@ -141,7 +140,6 @@
           </objProp>
           <stringProp name="filename"></stringProp>
           <intProp name="RespTimeGraph.lineshapepoint">4</intProp>
-          <intProp name="RespTimeGraph.legendsize">5</intProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph - SpeedTest 10 users in 5 mins">
@@ -182,7 +180,7 @@
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Stress Test 50 threads in 5 minutes">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Stress Test 50 threads in 5 minutes" enabled="false">
         <intProp name="ThreadGroup.num_threads">50</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <longProp name="ThreadGroup.duration">300</longProp>
@@ -265,7 +263,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Page5">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Page5" enabled="true">
           <boolProp name="HTTPSampler.image_parser">true</boolProp>
           <stringProp name="HTTPSampler.domain">127.0.0.1</stringProp>
           <stringProp name="HTTPSampler.port">8080</stringProp>
@@ -315,7 +313,6 @@
           </objProp>
           <stringProp name="filename"></stringProp>
           <intProp name="RespTimeGraph.lineshapepoint">4</intProp>
-          <intProp name="RespTimeGraph.legendsize">5</intProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph - Stress Test 50 threads in 5 minutes">
@@ -356,7 +353,7 @@
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Stress Test 70 threads in 5 minutes">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Stress Test 70 threads in 5 minutes" enabled="false">
         <intProp name="ThreadGroup.num_threads">50</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <longProp name="ThreadGroup.duration">300</longProp>
@@ -489,7 +486,6 @@
           </objProp>
           <stringProp name="filename"></stringProp>
           <intProp name="RespTimeGraph.lineshapepoint">4</intProp>
-          <intProp name="RespTimeGraph.legendsize">5</intProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph - Stress Test 70 threads in 5 minutes">
@@ -530,7 +526,7 @@
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Stress Test 100 threads in 5 minutes">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Stress Test 100 threads in 5 minutes" enabled="false">
         <intProp name="ThreadGroup.num_threads">100</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <longProp name="ThreadGroup.duration">300</longProp>
@@ -663,7 +659,6 @@
           </objProp>
           <stringProp name="filename"></stringProp>
           <intProp name="RespTimeGraph.lineshapepoint">4</intProp>
-          <intProp name="RespTimeGraph.legendsize">5</intProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph - Stress Test 100 threads in 5 minutes">
