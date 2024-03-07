@@ -1,6 +1,6 @@
 # Apache Tomcat 10
 
-<img src="./img/tomcat.png" width=100 />
+<img  src="./img/tomcat.png"  width=100 />
 
 This project belongs to CS4675 SP24 Homework 4 Problem 2.
 
@@ -13,16 +13,23 @@ This project belongs to CS4675 SP24 Homework 4 Problem 2.
     -   Docker Desktop can be found [here](https://www.docker.com/products/docker-desktop/)
 
 -   JDK 8+
+
     -   Tested with Zulu21.30
+
     -   [Download Compatible Version with your Machine](https://www.azul.com/downloads/?package=jdk#zulu)
+
 -   Maven
+
     -   Tested with version 3.9.6
+
     -   [Download Binary .tar.gz or .zip](https://maven.apache.org/download.cgi)
 
 ### Requirements for Hosting
 
 -   Apache Tomcat 10+
+
     -   Tested with 10.1.19
+
     -   [Download Core .tar.gz or .zip](https://tomcat.apache.org/download-10.cgi)
 
 ### Requirements for Benchmark
@@ -30,10 +37,13 @@ This project belongs to CS4675 SP24 Homework 4 Problem 2.
 -   Apache JMeter
 
     -   Tested with 5.6.3
+
     -   [Download Binaries .tgz or .zip](https://jmeter.apache.org/download_jmeter.cgi)
 
 -   Test Files to run in JMeter:
+
     -   [NO-CACHE.jmx](./Tests/NO-CACHE.jmx) tests no caching implementation.
+
     -   [CACHE.jmx](./Tests/CACHE.jmx) tests with caching implementation.
 
 ## Installation
@@ -43,22 +53,24 @@ In this project, to eliminate the complication of different OS. I have picked Do
 In the Project Root, there are 2 folders, both are able to build alone with Docker:
 
 -   **/Non-Cache**: is the Tomcat server and the application without Cache implementation.
+
 -   **/Cache**: is the Tomcat server and the application with Cache implementation.
 
 Direct to the preferred version of Tomcat server and application, with Docker running, run the following command:
 
 ```bash
-docker build -t <IMAGE_NAME> .
+docker  build  -t  <IMAGE_NAME>  .
 ```
 
 For example, I would like to build Tomcat with Caching, I would direct to Cache folder and run:
 
 ```bash
-docker build -t apache-server-cache .
+docker  build  -t  apache-server-cache  .
 ```
 
 Build successful message look like:
-<img src="./img/built.png" width=700 />
+
+<img  src="./img/built.png"  width=700 />
 
 Run the server and the application, run the following:
 
@@ -69,22 +81,31 @@ Build the application and process everything inside the Docker container:
 ```dockerfile
 # Use the official OpenJDK image as the base image
 FROM openjdk:23-jdk
+
 # Copy the current directory contents into the container at /myapp
 COPY . /myapp
+
 # Set the working directory to /myapp
 WORKDIR /myapp/SimpleApp
+
 # Use Maven to build the application, produce a .WAR file
 RUN ../apache-maven-3.9.6/bin/mvn clean package
+
 # Copy the .WAR file to the Tomcat webapps directory
 RUN cp target/SimpleApp-1.0-SNAPSHOT.war ../apache-tomcat-10.1.19/webapps/SimpleApp.war
+
 RUN cp -R target/SimpleApp-1.0-SNAPSHOT ../apache-tomcat-10.1.19/webapps/SimpleApp
 # Change the working directory to the Tomcat bin directory
+
 WORKDIR /myapp/apache-tomcat-10.1.19/bin
 # Make the shell scripts executable
+
 RUN chmod +x *.sh
 # Make port 8080 available to the world outside this container
+
 EXPOSE 8080
 # Run catalina.sh to start the Tomcat server
+
 CMD ["./catalina.sh", "run"]
 ```
 
@@ -95,11 +116,11 @@ CMD ["./catalina.sh", "run"]
 To configurate PORT, direct to `apache-tomcat-10.1.19` > `conf`. Open `server.xml` file, edit the port attribute on these lines:
 
 ```xml
-<Connector port="8080" protocol="HTTP/1.1"
-               connectionTimeout="20000"
-               redirectPort="8443"
-               maxParameterCount="1000"
-               />
+<Connector  port="8080"  protocol="HTTP/1.1"
+            connectionTimeout="20000"
+            redirectPort="8443"
+            maxParameterCount="1000"
+/>
 ```
 
 The port is set to `8080` by default. I can alter this port to 8081, 3000, etc. Save the file and keep it in the current directory. For an example, I can change to 3000 since I know port 3000 is currently free.
@@ -113,36 +134,50 @@ To configurate MANAGER account, direct to `apache-tomcat-10.1.19` > `conf`. Open
 ```xml
 <tomcat-users>
 ...
-<role rolename="manager-gui"/>
-<user username="admin" password="admin" roles="manager-gui"/>
+<role  rolename="manager-gui"/>
+<user  username="admin"  password="admin"  roles="manager-gui"/>
 ...
 </tomcat-users>
 ```
 
 You can change the `username` and `password` to your preferred ones. I personally set them both to admin.
 
+### Access Server as Manager
+
+```text
+http://<IP_ADDRESS>:<PORT>/manager
+```
+
+For local machine, use `http://127.0.0.1:8080/manager` and use your `manager-gui` username and password to access manager dashboard.
+
+<img src="./img/apache-manager.png" width=1000 />
+
+Use this link to explore the Manager GUI [https://www.baeldung.com/tomcat-manager-app](https://www.baeldung.com/tomcat-manager-app)
+
 ## Create Servlet App
 
 Since we will build the app with Maven, we need to follow some specific folder structure:
 
-<img src="./img/project-structure.png" width=500 />
+<img  src="./img/project-structure.png"  width=500 />
 
 More on how to create a Servlet App on [JAVATUTORIAL.NET](https://javatutorial.net/java-servlet-example/)
 
 In my project, I create a `GetObject.java` to read the data in the /webapp/WEB-INF directory. This class can get file types (JPG, PNG, GIF, TXT, CSS) only. To use this feature, when building the servlet, to display an image in images folder:
 
 ```java
-String filePath = request.getContextPath() + "/getObject?name=image1.png";
-out.println("<img src='" + filePath + "/>");
+String filePath = request.getContextPath() +  "/getObject?name=image1.png";
+out.println("<img src='"  + filePath +  "/>");
 ```
 
--   `GetObject` will take in a parameter "name" is the filename with extension. With compatible extension, it will map to the right folder of that type and return if exists.
--   The purpose of `request.getContextPath()` is to get the full path of your server URL. Without it the browser would not know where the `/getObject` belongs to.
--   At the end of GetObject, I print out in console "return object" for the purpose of testing Cache.
+-   The `GetObject` function will take a parameter called "name" which represents the filename with its extension. If the extension is compatible, it will be mapped to the corresponding folder of that type and returned if it exists.
+
+-   The purpose of using `request.getContextPath()` is to retrieve the full path of the server URL. Without it, the browser would not know where the `/getObject` resource belongs.
+
+-   At the end of the `GetObject` function, I print out "return object" in the console for the purpose of testing the cache.
 
 Assets in /webapp/WEB-INF directory:
 
-<img src="./img/assets.png" width=200 />
+<img  src="./img/assets.png"  width=200 />
 
 ### How Every Page Looks Like?
 
@@ -153,34 +188,35 @@ Full URL will be: `<SERVER_DOMAIN>:<PORT>/SimpleApp/page1`
 ```java
 // GET /SimpleApp/page1
 @WebServlet(name = "page1", value = "/page1")
+
 public class Page1 extends HttpServlet {
-    ...
+  ...
+      public void
+      doGet(HttpServletRequest request, HttpServletResponse response)
+          throws IOException {
+    // Response Type, so the browser can render a website
+    response.setContentType("text/html");
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // Response Type, so the browser can render a website
-        response.setContentType("text/html");
+    PrintWriter out = response.getWriter();
 
-        PrintWriter out = response.getWriter();
-        out.println("<html>");
-        out.println(Nav.writeHeader(title)); // custom header
-        out.println("<body>");
-        out.println(Nav.navBar()); // custom Nav Bar
+    out.println("<html>");
+    out.println(Nav.writeHeader(title)); // custom header
+    out.println("<body>");
+    out.println(Nav.navBar()); // custom Nav Bar
+    out.println("<h1>" + title + "</h1>");
+    out.println("<div class='imagesContainer'>");
 
-        out.println("<h1>" + title + "</h1>");
-
-        out.println("<div class='imagesContainer'>");
-        for (Map.Entry<String, String> image : Nav.images.entrySet()) {
-            out.println("<div class='card'>");
-            out.println("<img src='"
-                            + Nav.getObjectUrl(request, image.getValue())
-                            + "' alt='" + image.getKey() + "'/>");
-            out.println("<p>"+image.getKey()+"</p>");
-            out.println("</div>");
-        }
-        out.println("</div>");
-
-        out.println("</body></html>");
+    for (Map.Entry<String, String> image : Nav.images.entrySet()) {
+      out.println("<div class='card'>");
+      out.println("<img src='"
+          + Nav.getObjectUrl(request, image.getValue())
+          + "' alt='" + image.getKey() + "'/>");
+      out.println("<p>" + image.getKey() + "</p>");
+      out.println("</div>");
     }
+    out.println("</div>");
+    out.println("</body></html>");
+  }
 }
 ```
 
@@ -189,18 +225,19 @@ public class Page1 extends HttpServlet {
 There are 2 apps:
 
 -   Non-Caching with Docker Image Name: apache-server
+
 -   Caching with Docker Image Name: apache-server-caching
 
 Use the Terminal command to run the desired service:
 
 ```bash
-docker run -p 8080:8080 <IMAGE_NAME>
+docker  run  -p  8080:8080  <IMAGE_NAME>
 ```
 
-Here the server run inside Docker container on port 8080, and we want to map that 8080 port to the outside environment at port 8080. If I configurate Tomcat to port 3000, and I want to expose to outside port 8080, I can run the similar command:
+Here, the server runs inside a Docker container on port 8080, and we aim to map that port (8080) to the external environment at the same port (8080). If I configure Tomcat to use port 3000, but I intend to expose it to the external environment on port 8080, I can execute a similar command:
 
 ```bash
-docker run -p 8080:3000 <IMAGE_NAME>
+docker  run  -p  8080:3000  <IMAGE_NAME>
 ```
 
 ## Testing on iPhone Device
@@ -211,33 +248,33 @@ Find your server's IP address within the network by [many methods](https://www.a
 
 For me, my laptop IP address is `128.61.32.180`, to access from other devices:
 
-    http://128.61.32.180:8080/SimpleApp
+http://128.61.32.180:8080/SimpleApp
 
 ### In this particular project, I have 6 pages:
 
 ### Homepage: includes links to pages + a GIF image
 
-<img src="./img/mobile/homepage.png" width=300 />
+<img  src="./img/mobile/homepage.png"  width=300 />
 
 ### Page 1: load all the images in images folder
 
-<img src="./img/mobile/page1.png" width=300 />
+<img  src="./img/mobile/page1.png"  width=300 />
 
 ### Page 2: load only 4 images from the images folder
 
-<img src="./img/mobile/page2.png" width=300 />
+<img  src="./img/mobile/page2.png"  width=300 />
 
 ### Page 3: display a random image from images folder
 
-<img src="./img/mobile/page3.png" width=300 />
+<img  src="./img/mobile/page3.png"  width=300 />
 
 ### Page 4: load a txt file from text folder
 
-<img src="./img/mobile/page4.png" width=300 />
+<img  src="./img/mobile/page4.png"  width=300 />
 
 ### Page 5: randomize 1,000 integers and display them
 
-<img src="./img/mobile/page5.png" width=300 />
+<img  src="./img/mobile/page5.png"  width=300 />
 
 ## Cache Setup
 
@@ -246,46 +283,54 @@ To allow caching, we need to configurate the App's `web.xml` in `SimpleApp/src/m
 ```xml
 <web-app>
 ...
- <filter>
-        <filter-name>ExpiresFilter</filter-name>
-        <filter-class>org.apache.catalina.filters.ExpiresFilter</filter-class>
-        <init-param>
-        <!-- Make html expires in 10 minutes -->
-            <param-name>ExpiresByType text/html</param-name>
-            <param-value>access plus 10 minutes</param-value>
-        </init-param>
-        <init-param>
-        <!-- Make xml expires in 10 minutes -->
-            <param-name>ExpiresByType text/xml</param-name>
-            <param-value>access plus 10 minutes</param-value>
-        </init-param>
-        <init-param>
-        <!-- Make image expires in 10 minutes -->
-            <param-name>ExpiresByType image</param-name>
-            <param-value>access plus 10 days</param-value>
-        </init-param>
-        <init-param>
-        <!-- Make css expires in 10 minutes -->
-            <param-name>ExpiresByType text/css</param-name>
-            <param-value>access plus 10 hours</param-value>
-        </init-param>
-        <init-param>
-        <!-- Make javascript expires in 10 minutes -->
-            <param-name>ExpiresByType application/javascript</param-name>
-            <param-value>access plus 10 minutes</param-value>
-        </init-param>
-        <init-param>
-        <!-- Make other files expires in 10 minutes -->
-            <param-name>ExpiresDefault</param-name>
-            <param-value>access plus 10 minutes</param-value>
-        </init-param>
-    </filter>
 
-    <filter-mapping>
-        <filter-name>ExpiresFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-        <dispatcher>REQUEST</dispatcher>
-    </filter-mapping>
+<filter>
+<filter-name>ExpiresFilter</filter-name>
+<filter-class>org.apache.catalina.filters.ExpiresFilter</filter-class>
+<init-param>
+
+<!-- Make html expires in 10 minutes -->
+<param-name>ExpiresByType text/html</param-name>
+<param-value>access plus 10 minutes</param-value>
+</init-param>
+<init-param>
+
+<!-- Make xml expires in 10 minutes -->
+<param-name>ExpiresByType text/xml</param-name>
+<param-value>access plus 10 minutes</param-value>
+</init-param>
+<init-param>
+
+<!-- Make image expires in 10 minutes -->
+<param-name>ExpiresByType image</param-name>
+<param-value>access plus 10 days</param-value>
+</init-param>
+<init-param>
+
+<!-- Make css expires in 10 minutes -->
+<param-name>ExpiresByType text/css</param-name>
+<param-value>access plus 10 hours</param-value>
+</init-param>
+<init-param>
+
+<!-- Make javascript expires in 10 minutes -->
+<param-name>ExpiresByType application/javascript</param-name>
+<param-value>access plus 10 minutes</param-value>
+</init-param>
+<init-param>
+
+<!-- Make other files expires in 10 minutes -->
+<param-name>ExpiresDefault</param-name>
+<param-value>access plus 10 minutes</param-value>
+</init-param>
+</filter>
+
+<filter-mapping>
+<filter-name>ExpiresFilter</filter-name>
+<url-pattern>/*</url-pattern>
+<dispatcher>REQUEST</dispatcher>
+</filter-mapping>
+
 </web-app>
 ```
 
@@ -301,13 +346,13 @@ RETURN_CUSTOM_STATUS.message=Resource in cache
 
 Based on Jmeter documentation:
 
-    N.B. This property is currently a temporary solution for Bug 56162.
+N.B. This property is currently a temporary solution for Bug 56162.
 
 More information: https://jmeter.apache.org/usermanual/properties_reference.html#cache_manager
 
 ### What is 304?
 
-    The HTTP 304 Not Modified client redirection response code indicates that there is no need to retransmit the requested resources.
+The HTTP 304 Not Modified client redirection response code indicates that there is no need to retransmit the requested resources.
 
 ## Testing Setup
 
@@ -318,57 +363,70 @@ Direct to JMeter directory, go to `bin` folder. For Windows User, simple click o
 For MacOS and Linux users, give executable permission to `.sh` files with commands:
 
 ```bash
-chmod +x *.sh
+
+chmod  +x  *.sh
+
 ```
 
 Run `jmeter.sh` using:
 
 ```bash
+
 ./jmeter.sh
+
 ```
 
 ## Test Setup with JMeter
 
 There are 5 threads, each thread is a test. Right click to create a Thread Group.
 
-<img src='./img/jmeter-threads.png' width=700 />
+<img  src='./img/jmeter-threads.png'  width=700 />
 
 Configurate the thread group to get the desired test setting:
 
-<img src='./img/jmeter-threads-setup.png' width=1000 />
+<img  src='./img/jmeter-threads-setup.png'  width=1000 />
 
 On the Basic tab of the HTTP Request, configurate the request pointing to your site:
 
-<img src='./img/jmeter-homepage.png' width=1000 />
+<img  src='./img/jmeter-homepage.png'  width=1000 />
 
 Switch to Advanced Tab to Allow retrieve all objects like images, css, txt, etc. to get a proper statistic.
 
-<img src='./img/jmeter-advanced.png' width=400 />
+<img  src='./img/jmeter-advanced.png'  width=400 />
 
 ### Non-Caching Tests Setup
 
 -   Latency and throughput tests include the test on 10 concurrent users.
+
 -   Stress tests include 50 users, 70 users, 100 users, and 150 users.
+
 -   All users running at the same time, request at the same time in 5 minutes.
+
 -   Each users keep requesting 6 pages.
+
 -   Recording amount of received data, timing, content, etc.
 
 Each test will look like:
 
-<img src='./img/jmeter-non-caching.png' width=400 />
+<img  src='./img/jmeter-non-caching.png'  width=400 />
 
 ### Caching Tests Setup
 
 -   Latency and throughput tests include the test on 10 concurrent users.
+
 -   Stress tests include 50 users, 70 users, 100 users, and 150 users.
+
 -   All users running at the same time, request at the same time in 5 minutes.
+
 -   Each users keep requesting 6 pages.
+
 -   Recording amount of received data, timing, content, etc.
+
 -   Include HTTP Cache Manager to properly cache the sites and record statistic.
 
 Each test will look like below.
 
-<img src='./img/jmeter-caching.png' width=400 />
+<img  src='./img/jmeter-caching.png'  width=400 />
 
 ### Open my provided Tests Package in the Requirements section above in JMeter.
 
@@ -383,61 +441,90 @@ On the navigation bar in Jmeter, navigate to the Green Button to run your tests.
 ## Performance Testing without Cache
 
 -   Average **Throughput** (10 Users = 11648 requests): 6 requests/second.
--   **Latency** each page is the average time in (ms) to load each request:
-    -   Homepage: 109 ms
-    -   Page 1: 717 ms
-    -   Page 2: 461 ms
-    -   Page 3: 112 ms
-    -   Page 4: 131 ms
-    -   Page 5: 9 ms
 
-A few thing we can observe here:
+-   **Latency** for each page is the average time (in ms) to load each request:
 
--   From 10 to 100 Users Tests, Number of Sample and KBs Download don't change significantly.
--   The Latency increases as the number of number of users increase.
+-   Homepage: 109 ms
+
+-   Page 1: 717 ms
+
+-   Page 2: 461 ms
+
+-   Page 3: 112 ms
+
+-   Page 4: 131 ms
+
+-   Page 5: 9 ms
+
+A few things we can observe here:
+
+-   From 10 to 100 Users Tests, the number of samples and KBs Download don't change significantly.
+
+-   The Latency increases as the number of users increase.
+
 -   The Throughput is likely to be the same as the number of users increase.
--   Look like there are no errors during each test.
+
+-   It seems there are no errors during each test.
+
 -   When there are 150 users:
-    -   The numbers of samples start to drop significantly.
-    -   The server starts failing on process requests, results in KBs download drops.
-    -   Latency increases significantly, more than 10x times 10 users.
-    -   Throughput is inconsistent and tend to drop by a large amount.
-    -   Error % increases as the test running. Some pages get up to 90% of errors.
+
+-   The number of samples starts to drop significantly.
+
+-   The server starts failing to process requests, resulting in KBs download drops.
+
+-   Latency increases significantly, more than 10 times that of 10 users.
+
+-   Throughput is inconsistent and tends to drop by a large amount.
+
+-   Error % increases as the test runs. Some pages get up to 90% of errors.
 
 Response Time for 50 users over 5 minutes.
 
-<img src="./img/sample_results/reponse_time_50users_5min-nocache.png" width=800 />
+<img  src="./img/sample_results/reponse_time_50users_5min-nocache.png"  width=800 />
 
 ## Performance Testing with Cache
 
 -   Average **Throughput** (10 Users ~ 3.5 million requests): 11565 requests/second.
 
--   **Latency** each page is the average time in (ms) to load each request:
-    -   Homepage: 0 ms
-    -   Page 1: 0 ms
-    -   Page 2: 0 ms
-    -   Page 3: 0 ms
-    -   Page 4: 0 ms
-    -   Page 5: 0 ms
+-   **Latency** for each page is the average time (in ms) to load each request:
+
+-   Homepage: 0 ms
+
+-   Page 1: 0 ms
+
+-   Page 2: 0 ms
+
+-   Page 3: 0 ms
+
+-   Page 4: 0 ms
+
+-   Page 5: 0 ms
 
 Why?
 
 -   The first time the latency can be a large number.
--   However, each future requests will be served from the caches. Which take a very small amount of time.
--   As the time goes by, the average will keep decreasing to a very small number close to 0.
 
-A few thing we can observe here:
+-   However, each future request will be served from the caches. Which takes a very small amount of time.
 
--   From 10 to 150 Users Tests, Number of Sample and KBs Download keep increasing if there are more users.
--   KBs Download increases not because of the images, or html, or text. But there are some objects are not significantly effects the performance, therefore they are not being taken care of.
--   However, KBs Download is change slightly increase we increase the users.
+-   As time goes by, the average will keep decreasing to a very small number close to 0.
+
+A few things we can observe here:
+
+-   From 10 to 150 Users Tests, the number of samples and KBs Download keeps increasing if there are more users.
+
+-   KBs Download increases not because of the images, HTML, or text. But there are some objects that are not significantly affecting the performance, therefore they are not being taken care of.
+
+-   However, KBs Download slightly increases as we increase the number of users.
+
 -   The Latency is a very small number (close to 0).
--   As number of users increase, the Throughput increases.
--   Look like there are no errors during each test.
+
+-   As the number of users increase, the Throughput increases.
+
+-   It seems there are no errors during each test.
 
 Response Time for 50 users over 5 minutes.
 
-<img src="./img/sample_results/reponse_time_50users_5min-cache.png" width=800 />
+<img  src="./img/sample_results/reponse_time_50users_5min-cache.png"  width=800 />
 
 ## Discussion
 
@@ -445,74 +532,86 @@ This project has provided a practical understanding of web server operations, pe
 
 ### 1. Cache Is Important for High Traffic Website:
 
--   Without Caching with the more users, the server will not able to handle the request. The more users, the more requests will stress out the server. Make it process each request longer than usual, results in Latency of the 100 Users `10x times` the Latency of the 10 Users requests.
-    -   We thought that increasing the number of requests can increase number of throughput. However, the higher number of requests doesn't mean the server can process them faster because the performance of the server is still the same but it has to to do more works which is impossible to increase throughput.
--   When there are 150 users in No-Caching server. The server cannot handle the works properly and cannot respond to the client on time. Therefore, after a number of Time-to-Live, the client do not receive the respond from the server. The client starts to throw errors. The throughput in the Homepage is still relevent to other tests. But we set up 150 users, the first homepage can be acquire by others users, the server has to process for that many users, leaving behind page 1, page 2, etc until they all are expired before receving the responds.
--   Caching change everything, the content is served directly from the memory saving a lot of requests/responds between the server and the client.
-    -   Even I increase 10 to 150 users at a time, the server only process the information once and give them Time-to-Live until the contents expire.
-    -   The Error is almost perfectly 0% since there are no round-trip between client-server after the first time visiting the site.
-    -   Since the content is served from memory, the latency is significantly drop to 0 which mean there look like no interaction between server and client because the content is sitll new.
-    -   Throughput is something impressive. The more users, the higher throughput.
--   Caching improves the Error Percentage significantly.
-    -   If there are no caching, the users keep asking for the contents while the server is not able to handle the images. At some points, the server cannot serve anymore, no caching, and the website will crash/ fail to respond on time.
+-   Without caching, with more users, the server will not be able to handle the requests. The more users, the more requests will stress out the server, making it process each request longer than usual. This results in latency for 100 users being 10 times the latency of the 10 user requests.
+
+-   We thought that increasing the number of requests can increase the throughput. However, the higher number of requests doesn't mean the server can process them faster because the performance of the server remains the same, but it has to do more work, which is impossible to increase throughput.
+
+-   When there are 150 users in a non-caching server, the server cannot handle the workload properly and cannot respond to the client on time. Therefore, after a number of Time-to-Live periods, the client does not receive a response from the server. The client starts to throw errors. The throughput on the homepage is still relevant to other tests. But we set up 150 users, the first homepage can be acquired by other users, the server has to process for that many users, leaving behind pages 1, 2, etc. until they all expire before receiving the response.
+
+-   Caching changes everything; the content is served directly from memory, saving a lot of requests/responses between the server and the client.
+
+-   Even if I increase from 10 to 150 users at a time, the server only processes the information once and gives them a Time-to-Live until the contents expire.
+
+-   The error rate is almost perfectly 0% since there are no round trips between client-server after the first time visiting the site.
+
+-   Since the content is served from memory, the latency significantly drops to 0, which means there appears to be no interaction between the server and client because the content is still new.
+
+-   Throughput is something impressive: the more users, the higher the throughput.
+
+-   Caching improves the error percentage significantly.
+
+-   If there is no caching, users keep asking for the contents while the server is not able to handle the images. At some points, the server cannot serve anymore, with no caching, and the website will crash/fail to respond on time.
 
 ### 2. Retrieving Resources/Assets Is Very Crucial
 
 First use Bare directory to image but not able to display. I tried a few of the directory like:
 
 -   `/SimpleApp/src/main/webapp/WEB-INF/images/hello.gif`
+
 -   `webapp/WEB-INF/images/hello.gif`
+
 -   `WEB-INF/images/hello.gif`
 
 Even I put the Docker container directory, the browser will combine your current URL + your directory:
 
 -   `<DOMAIN>:<PORT>/<BARE_URL>`
 
-<img src='./img/fail_resources.png' width=600 />
+<img  src='./img/fail_resources.png'  width=600 />
 
-This way is like the website in the client side is requesting contents in the server storage, but accessing the server is not just an directory. We need to do more work than it in a Javascript script. Therefore, I need to process the images in the server and send the complete one to the client.
+This way is like the website on the client side is requesting contents from the server storage, but accessing the server is not just a directory. We need to do more work than that in a JavaScript script. Therefore, I need to process the images on the server and send the complete one to the client.
 
-I know there is a method to display Images as Base64. I attempted to try this method ([TUTORIAL](https://www.tutorialspoint.com/how-to-display-base64-images-in-html)). The image is displayed perfectly.
+I know there is a method to display images as Base64. I attempted to try this method ([TUTORIAL](https://www.tutorialspoint.com/how-to-display-base64-images-in-html)). The image is displayed perfectly.
 
-    This prevents the page from loading slowly and saves the web browser from additional HTTP requests.
+This prevents the page from loading slowly and saves the web browser from additional HTTP requests.
 
 ```html
 <img src="data:image/jpeg;base64,<BASE64_IMAGE>" <OTHER_ATTRIBUTES /> />
 ```
 
-However, I concern about Caching Issue. Even above saying prevent the page loads slowly, Cache is still better since it won't need the server to process the data to Base64 again. My concern is RIGHT. Based on [Bunny.net](https://bunny.net/blog/why-optimizing-your-images-with-base64-is-almost-always-a-bad-idea/#:~:text=Caching%20Issues&text=Due%20to%20how%20Base64%20works,as%20increases%20your%20bandwidth%20bill.)
+However, I am concerned about Caching Issues. Even though it is stated above that it prevents the page from loading slowly, Cache is still better since it won't need the server to process the data to Base64 again. My concern is VALID. Based on [Bunny.net](https://bunny.net/blog/why-optimizing-your-images-with-base64-is-almost-always-a-bad-idea/#:~:text=Caching%20Issues&text=Due%20to%20how%20Base64%20works,as%20increases%20your%20bandwidth%20bill.)
 
-    Due to how Base64 works, the browser is unable to store the images locally so it will always need to fetch them from your server or CDN which creates extra load on your server as well as increases your bandwidth bill.
+Due to how Base64 works, the browser is unable to store the images locally, so it will always need to fetch them from your server or CDN, which creates extra load on your server as well as increases your bandwidth bill.
 
-When I looked at the Developer Tools, the HTML grows pretty big, it will absolutely affect the load and render time. It's time to learn something else. I do a little research and found [Servlet - Display Image - GeeksforGeeks](https://www.geeksforgeeks.org/servlet-display-image/). This method only process the images in general. However, I altered it a little to be able to get all of my necessary files like CSS, TEXT, etc.
+When I looked at the Developer Tools, the HTML grows pretty big, and it will absolutely affect the load and render time. It's time to learn something else. I did a little research and found [Servlet - Display Image - GeeksforGeeks](https://www.geeksforgeeks.org/servlet-display-image/). This method only processes the images in general. However, I altered it a little to be able to get all of my necessary files like CSS, TEXT, etc.
 
 ```java
 // /getObject?name=....
 @WebServlet(name = "getObject", value = "/getObject")
+
 public class GetObject extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        // take in file name with its extension
-        String fileName = request.getParameter("name");
-        // Notify if there is a request for Object
-        System.out.println("Return Object: " + fileName);
-        // support TXT by default
-        String contentType = "text/plain";
-        String storagePath = "/WEB-INF/text";
-        // support JPG, PNG, JPEG, GIF only
-        if (fileName.endsWith(".jpg")
-                || fileName.endsWith(".png")
-                || fileName.endsWith(".gif")
-                || fileName.endsWith("jpeg")) {
-            contentType = "image/jpeg";
-            storagePath = "/WEB-INF/images";
-        // support CSS
-        } else if (fileName.endsWith(".css")) {
-            contentType = "text/css";
-            storagePath = "/WEB-INF/static";
-        }
-        // PROCESS ASSETS AND RETURN IT
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws IOException {
+    // take in file name with its extension
+    String fileName = request.getParameter("name");
+    // Notify if there is a request for Object
+    System.out.println("Return Object: " + fileName);
+    // support TXT by default
+    String contentType = "text/plain";
+    String storagePath = "/WEB-INF/text";
+    // support JPG, PNG, JPEG, GIF only
+    if (fileName.endsWith(".jpg")
+        || fileName.endsWith(".png")
+        || fileName.endsWith(".gif")
+        || fileName.endsWith("jpeg")) {
+      contentType = "image/jpeg";
+      storagePath = "/WEB-INF/images";
+      // support CSS
+    } else if (fileName.endsWith(".css")) {
+      contentType = "text/css";
+      storagePath = "/WEB-INF/static";
     }
+    // PROCESS ASSETS AND RETURN IT
+  }
 }
 ```
 
@@ -522,19 +621,19 @@ Using this method, we allow the server to take the object and send it to client.
 
 For Cache, when running the webapp, my GetObject function will prinout in the console every time it process an object:
 
-<img src="./img/objreturn-cache.png" width="1000" />
+<img  src="./img/objreturn-cache.png"  width="1000" />
 
 or we can use browser developer mode to check the Cache:
 
-<img src="./img/devtools.png" width=800 />
+<img  src="./img/devtools.png"  width=800 />
 
 For Non-Cache, the console will look like:
 
-<img src="./img/objreturn-non-cache.png" width="1000" />
+<img  src="./img/objreturn-non-cache.png"  width="1000" />
 
 ### 3. Stress Tests Should NOT Always in Perfect Environments
 
-Along with my experiences with Setup JMeter and Tests Above. I used another laptop running Ubuntu to run Jmeter on my server hosting on a Mac Laptop. The Router is ATT BGW320. Also in this environment, there are other devices like TV, Laptop, Phones, Other Router, Camera, etc will make it harder to deliver packages in the Stress Tests. Let take a look when the number of users grow to 70 and I turned off the option to retrieve all the embeded object. The server starts not process some requests, and make the Error % for Page 5 4% out of 878 samples.
+Along with my experiences with setting up JMeter and conducting tests as described above, I used another laptop running Ubuntu to run JMeter on my server hosted on a Mac Laptop. The router is an ATT BGW320. Additionally, in this environment, there are other devices like TVs, laptops, phones, another router, cameras, etc., which make it harder to deliver packages in the stress tests. Let's take a look at what happens when the number of users grows to 70 and I turned off the option to retrieve all the embedded objects. The server starts to not process some requests, making the Error % for Page 5 reach 4% out of 878 samples.
 
 | Label    | # Samples | Latency | Error % | Throughput | Received KB/sec |
 | -------- | --------- | ------- | ------- | ---------- | --------------- |
@@ -545,7 +644,7 @@ Along with my experiences with Setup JMeter and Tests Above. I used another lapt
 | Page4    | 895       | 7670    | 0.00%   | 2.94164    | 6333.57         |
 | Page5    | 878       | 2597    | 3.99%   | 2.91675    | 80.12           |
 
-Starting with 100 users, the network starts to act slow, 45502 samples are waiting to be processed and sent over the network. The router starts doing bad job in routing the data. The slowness and not properly deliver data make 40000 ish samples stuck, then it keeps trying new samples. This impacts significantly other pages which make them waiting for their turns. The Error % of the first page make up to 99.78%. We can assume that the tests fail when there 100% over a home network.
+Starting with 100 users, the network starts to act slowly. 45,502 samples are waiting to be processed and sent over the network. The router starts doing a bad job in routing the data. The slowness and improper delivery of data cause approximately 40,000 samples to become stuck, after which it keeps trying new samples. This significantly impacts other pages, causing them to wait for their turn. The Error % of the first page reaches up to 99.78%. We can assume that the tests fail when there is 100% congestion over a home network.
 
 | Label    | # Samples | Latency | Error % | Throughput | Received KB/sec |
 | -------- | --------- | ------- | ------- | ---------- | --------------- |
@@ -556,4 +655,4 @@ Starting with 100 users, the network starts to act slow, 45502 samples are waiti
 | Page4    | 100       | 48967   | 95.00%  | 1.54495    | 168.16          |
 | Page5    | 5         | 2044    | 0.00%   | 0.93318    | 26.63           |
 
-A webserver need a dedicated performance machine + consistent network. For a toy webserver in a home network, ATT BGW320 can only handle about 80 devices with a high Error %. 100 Users make it impossible for a home router.
+The web server needs a dedicated performance machine and a consistent network. For a toy web server in a home network, the ATT BGW320 can only handle about 80 devices with a high error %. 100 Users make it impossible for a home router.
