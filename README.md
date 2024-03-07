@@ -28,8 +28,13 @@ This project belongs to CS4675 SP24 Homework 4 Problem 2.
 ### Requirements for Benchmark
 
 -   Apache JMeter
+
     -   Tested with 5.6.3
     -   [Download Binaries .tgz or .zip](https://jmeter.apache.org/download_jmeter.cgi)
+
+-   Test Files to run in JMeter:
+    -   [NO-CACHE.jmx](./Tests/NO-CACHE.jmx) tests no caching implementation.
+    -   [CACHE.jmx](./Tests/CACHE.jmx) tests with caching implementation.
 
 ## Installation
 
@@ -139,7 +144,11 @@ Assets in /webapp/WEB-INF directory:
 
 <img src="./img/assets.png" width=200 />
 
-### How Page 1 looks like in coding?
+### How Every Page Looks Like?
+
+Each Java file will have its request subdirectory. For page 1, it subdirectory is `/page1`.
+
+Full URL will be: `<SERVER_DOMAIN>:<PORT>/SimpleApp/page1`
 
 ```java
 // GET /SimpleApp/page1
@@ -153,7 +162,7 @@ public class Page1 extends HttpServlet {
 
         PrintWriter out = response.getWriter();
         out.println("<html>");
-        out.println(Nav.writeHeader(title));
+        out.println(Nav.writeHeader(title)); // custom header
         out.println("<body>");
         out.println(Nav.navBar()); // custom Nav Bar
 
@@ -302,6 +311,22 @@ More information: https://jmeter.apache.org/usermanual/properties_reference.html
 
 ## Testing Setup
 
+## Run JMeter
+
+Direct to JMeter directory, go to `bin` folder. For Windows User, simple click on `jmeter.bat` to run.
+
+For MacOS and Linux users, give executable permission to `.sh` files with commands:
+
+```bash
+chmod +x *.sh
+```
+
+Run `jmeter.sh` using:
+
+```bash
+./jmeter.sh
+```
+
 ## Test Setup with JMeter
 
 There are 5 threads, each thread is a test. Right click to create a Thread Group.
@@ -318,7 +343,7 @@ On the Basic tab of the HTTP Request, configurate the request pointing to your s
 
 Switch to Advanced Tab to Allow retrieve all objects like images, css, txt, etc. to get a proper statistic.
 
-<img src='./img/jmeter-advanced.png' width=500 />
+<img src='./img/jmeter-advanced.png' width=400 />
 
 ### Non-Caching Tests Setup
 
@@ -344,6 +369,12 @@ Each test will look like:
 Each test will look like below.
 
 <img src='./img/jmeter-caching.png' width=400 />
+
+### Open my provided Tests Package in the Requirements section above in JMeter.
+
+### ![jmeterrun](./img/jmeter-run.png) Run the Tests
+
+On the navigation bar in Jmeter, navigate to the Green Button to run your tests.
 
 ## Performance
 
@@ -373,6 +404,10 @@ A few thing we can observe here:
     -   Throughput is inconsistent and tend to drop by a large amount.
     -   Error % increases as the test running. Some pages get up to 90% of errors.
 
+Response Time for 50 users over 5 minutes.
+
+<img src="./img/sample_results/reponse_time_50users_5min-nocache.png" width=800 />
+
 ## Performance Testing with Cache
 
 -   Average **Throughput** (10 Users ~ 3.5 million requests): 11565 requests/second.
@@ -400,21 +435,125 @@ A few thing we can observe here:
 -   As number of users increase, the Throughput increases.
 -   Look like there are no errors during each test.
 
+Response Time for 50 users over 5 minutes.
+
+<img src="./img/sample_results/reponse_time_50users_5min-cache.png" width=800 />
+
 ## Discussion
 
-1. Cache is a very important setup for website:
+This project has provided a practical understanding of web server operations, performance optimization techniques like caching, and the importance of load testing in assessing server performance.
 
-    - Without Caching with the more users, the server will not able to handle the request. The more users, the more requests will stress out the server. Make it process each request longer than usual, results in Latency of the 100 Users `10x times` the Latency of the 10 Users requests.
-        - We thought that increasing the number of requests can increase number of throughput. However, the higher number of requests doesn't mean the server can process them faster because the performance of the server is still the same but it has to to do more works which is impossible to increase throughput.
-    - When there are 150 users in No-Caching server. The server cannot handle the works properly and cannot respond to the client on time. Therefore, after a number of Time-to-Live, the client do not receive the respond from the server. The client starts to throw errors. The throughput in the Homepage is still relevent to other tests. But we set up 150 users, the first homepage can be acquire by others users, the server has to process for that many users, leaving behind page 1, page 2, etc until they all are expired before receving the responds.
-    - Caching change everything, the content is served directly from the memory saving a lot of requests/responds between the server and the client.
-        - Even I increase 10 to 150 users at a time, the server only process the information once and give them Time-to-Live until the contents expire.
-        - The Error is almost perfectly 0% since there are no round-trip between client-server after the first time visiting the site.
-        - Since the content is served from memory, the latency is significantly drop to 0 which mean there look like no interaction between server and client because the content is sitll new.
-        - Throughput is something impressive. The more users, the higher throughput.
-    - Caching impact significantly the Error.
-        - If there are no caching, the users keep asking for the contents while the server is not able to handle the images. At some points, the server cannot serve anymore, no caching, and the website will crash/ fail to respond on time.
+### 1. Cache Is Important for High Traffic Website:
 
-2. URL
+-   Without Caching with the more users, the server will not able to handle the request. The more users, the more requests will stress out the server. Make it process each request longer than usual, results in Latency of the 100 Users `10x times` the Latency of the 10 Users requests.
+    -   We thought that increasing the number of requests can increase number of throughput. However, the higher number of requests doesn't mean the server can process them faster because the performance of the server is still the same but it has to to do more works which is impossible to increase throughput.
+-   When there are 150 users in No-Caching server. The server cannot handle the works properly and cannot respond to the client on time. Therefore, after a number of Time-to-Live, the client do not receive the respond from the server. The client starts to throw errors. The throughput in the Homepage is still relevent to other tests. But we set up 150 users, the first homepage can be acquire by others users, the server has to process for that many users, leaving behind page 1, page 2, etc until they all are expired before receving the responds.
+-   Caching change everything, the content is served directly from the memory saving a lot of requests/responds between the server and the client.
+    -   Even I increase 10 to 150 users at a time, the server only process the information once and give them Time-to-Live until the contents expire.
+    -   The Error is almost perfectly 0% since there are no round-trip between client-server after the first time visiting the site.
+    -   Since the content is served from memory, the latency is significantly drop to 0 which mean there look like no interaction between server and client because the content is sitll new.
+    -   Throughput is something impressive. The more users, the higher throughput.
+-   Caching improves the Error Percentage significantly.
+    -   If there are no caching, the users keep asking for the contents while the server is not able to handle the images. At some points, the server cannot serve anymore, no caching, and the website will crash/ fail to respond on time.
 
-3. Convert to Base64
+### 2. Retrieving Resources/Assets Is Very Crucial
+
+First use Bare directory to image but not able to display. I tried a few of the directory like:
+
+-   `/SimpleApp/src/main/webapp/WEB-INF/images/hello.gif`
+-   `webapp/WEB-INF/images/hello.gif`
+-   `WEB-INF/images/hello.gif`
+
+Even I put the Docker container directory, the browser will combine your current URL + your directory:
+
+-   `<DOMAIN>:<PORT>/<BARE_URL>`
+
+<img src='./img/fail_resources.png' width=600 />
+
+This way is like the website in the client side is requesting contents in the server storage, but accessing the server is not just an directory. We need to do more work than it in a Javascript script. Therefore, I need to process the images in the server and send the complete one to the client.
+
+I know there is a method to display Images as Base64. I attempted to try this method ([TUTORIAL](https://www.tutorialspoint.com/how-to-display-base64-images-in-html)). The image is displayed perfectly.
+
+    This prevents the page from loading slowly and saves the web browser from additional HTTP requests.
+
+```html
+<img src="data:image/jpeg;base64,<BASE64_IMAGE>" <OTHER_ATTRIBUTES /> />
+```
+
+However, I concern about Caching Issue. Even above saying prevent the page loads slowly, Cache is still better since it won't need the server to process the data to Base64 again. My concern is RIGHT. Based on [Bunny.net](https://bunny.net/blog/why-optimizing-your-images-with-base64-is-almost-always-a-bad-idea/#:~:text=Caching%20Issues&text=Due%20to%20how%20Base64%20works,as%20increases%20your%20bandwidth%20bill.)
+
+    Due to how Base64 works, the browser is unable to store the images locally so it will always need to fetch them from your server or CDN which creates extra load on your server as well as increases your bandwidth bill.
+
+When I looked at the Developer Tools, the HTML grows pretty big, it will absolutely affect the load and render time. It's time to learn something else. I do a little research and found [Servlet - Display Image - GeeksforGeeks](https://www.geeksforgeeks.org/servlet-display-image/). This method only process the images in general. However, I altered it a little to be able to get all of my necessary files like CSS, TEXT, etc.
+
+```java
+// /getObject?name=....
+@WebServlet(name = "getObject", value = "/getObject")
+public class GetObject extends HttpServlet {
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        // take in file name with its extension
+        String fileName = request.getParameter("name");
+        // Notify if there is a request for Object
+        System.out.println("Return Object: " + fileName);
+        // support TXT by default
+        String contentType = "text/plain";
+        String storagePath = "/WEB-INF/text";
+        // support JPG, PNG, JPEG, GIF only
+        if (fileName.endsWith(".jpg")
+                || fileName.endsWith(".png")
+                || fileName.endsWith(".gif")
+                || fileName.endsWith("jpeg")) {
+            contentType = "image/jpeg";
+            storagePath = "/WEB-INF/images";
+        // support CSS
+        } else if (fileName.endsWith(".css")) {
+            contentType = "text/css";
+            storagePath = "/WEB-INF/static";
+        }
+        // PROCESS ASSETS AND RETURN IT
+    }
+}
+```
+
+Using this method, we allow the server to take the object and send it to client. At the same time, this method allows the Cache if we turn on the Caching Option on the Application (using the method mention above)
+
+#### How to know when it caches or no cache?
+
+For Cache, when running the webapp, my GetObject function will prinout in the console every time it process an object:
+
+<img src="./img/objreturn-cache.png" width="1000" />
+
+or we can use browser developer mode to check the Cache:
+
+<img src="./img/devtools.png" width=800 />
+
+For Non-Cache, the console will look like:
+
+<img src="./img/objreturn-non-cache.png" width="1000" />
+
+### 3. Stress Tests Should NOT Always in Perfect Environments
+
+Along with my experiences with Setup JMeter and Tests Above. I used another laptop running Ubuntu to run Jmeter on my server hosting on a Mac Laptop. The Router is ATT BGW320. Also in this environment, there are other devices like TV, Laptop, Phones, Other Router, Camera, etc will make it harder to deliver packages in the Stress Tests. Let take a look when the number of users grow to 70 and I turned off the option to retrieve all the embeded object. The server starts not process some requests, and make the Error % for Page 5 4% out of 878 samples.
+
+| Label    | # Samples | Latency | Error % | Throughput | Received KB/sec |
+| -------- | --------- | ------- | ------- | ---------- | --------------- |
+| HomePage | 922       | 2645    | 0.00%   | 3.0458     | 3.02            |
+| Page1    | 912       | 1246    | 0.00%   | 3.02481    | 4.22            |
+| Page2    | 904       | 1272    | 0.00%   | 3.00331    | 3.21            |
+| Page3    | 899       | 1310    | 0.00%   | 2.97337    | 2.32            |
+| Page4    | 895       | 7670    | 0.00%   | 2.94164    | 6333.57         |
+| Page5    | 878       | 2597    | 3.99%   | 2.91675    | 80.12           |
+
+Starting with 100 users, the network starts to act slow, 45502 samples are waiting to be processed and sent over the network. The router starts doing bad job in routing the data. The slowness and not properly deliver data make 40000 ish samples stuck, then it keeps trying new samples. This impacts significantly other pages which make them waiting for their turns. The Error % of the first page make up to 99.78%. We can assume that the tests fail when there 100% over a home network.
+
+| Label    | # Samples | Latency | Error % | Throughput | Received KB/sec |
+| -------- | --------- | ------- | ------- | ---------- | --------------- |
+| HomePage | 45502     | 65      | 99.78%  | 544.39951  | 1353.85         |
+| Page1    | 101       | 776     | 0.99%   | 1.55826    | 2.18            |
+| Page2    | 100       | 336     | 0.00%   | 26.22607   | 28.07           |
+| Page3    | 100       | 465     | 0.00%   | 19.03312   | 14.88           |
+| Page4    | 100       | 48967   | 95.00%  | 1.54495    | 168.16          |
+| Page5    | 5         | 2044    | 0.00%   | 0.93318    | 26.63           |
+
+A webserver need a dedicated performance machine + consistent network. For a toy webserver in a home network, ATT BGW320 can only handle about 80 devices with a high Error %. 100 Users make it impossible for a home router.

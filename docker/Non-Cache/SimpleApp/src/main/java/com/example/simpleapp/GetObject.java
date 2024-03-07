@@ -12,7 +12,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 @WebServlet(name = "getObject", value = "/getObject")
-
 public class GetObject extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
@@ -35,7 +34,6 @@ public class GetObject extends HttpServlet {
 
         // set the content type to image/jpeg.
         response.setContentType(contentType);
-
         ServletOutputStream out;
 
         // Writing this image
@@ -45,23 +43,16 @@ public class GetObject extends HttpServlet {
         // path of the image
         String filePath = getServletContext().getRealPath(storagePath);
         FileInputStream fin = new FileInputStream(filePath + "/" + fileName);
-
-        // getting image in BufferedInputStream
         BufferedInputStream bin = new BufferedInputStream(fin);
         BufferedOutputStream bout = new BufferedOutputStream(out);
 
         int ch = 0;
         while ((ch = bin.read()) != -1) {
-            // display image
             bout.write(ch);
         }
-
-        // close all classes
         bin.close();
         fin.close();
         bout.close();
         out.close();
-
-        
     }
 }
