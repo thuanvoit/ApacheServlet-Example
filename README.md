@@ -259,27 +259,27 @@ http://128.61.32.180:8080/SimpleApp
 
 ### Homepage: includes links to pages + a GIF image
 
-<img  src="./img/mobile/homepage.png"  width=300 />
+<img  src="./img/mobile/homepage.PNG"  width=300 />
 
 ### Page 1: load all the images in images folder
 
-<img  src="./img/mobile/page1.png"  width=300 />
+<img  src="./img/mobile/page1.PNG"  width=300 />
 
 ### Page 2: load only 4 images from the images folder
 
-<img  src="./img/mobile/page2.png"  width=300 />
+<img  src="./img/mobile/page2.PNG"  width=300 />
 
 ### Page 3: display a random image from images folder
 
-<img  src="./img/mobile/page3.png"  width=300 />
+<img  src="./img/mobile/page3.PNG"  width=300 />
 
 ### Page 4: load a txt file from text folder
 
-<img  src="./img/mobile/page4.png"  width=300 />
+<img  src="./img/mobile/page4.PNG"  width=300 />
 
 ### Page 5: randomize 1,000 integers and display them
 
-<img  src="./img/mobile/page5.png"  width=300 />
+<img  src="./img/mobile/page5.PNG"  width=300 />
 
 ## Cache Setup
 
