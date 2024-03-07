@@ -15,21 +15,16 @@ This project belongs to CS4675 SP24 Homework 4 Problem 2.
 -   JDK 8+
 
     -   Tested with Zulu21.30
-
     -   [Download Compatible Version with your Machine](https://www.azul.com/downloads/?package=jdk#zulu)
 
 -   Maven
-
     -   Tested with version 3.9.6
-
     -   [Download Binary .tar.gz or .zip](https://maven.apache.org/download.cgi)
 
 ### Requirements for Hosting
 
 -   Apache Tomcat 10+
-
     -   Tested with 10.1.19
-
     -   [Download Core .tar.gz or .zip](https://tomcat.apache.org/download-10.cgi)
 
 ### Requirements for Benchmark
@@ -37,18 +32,28 @@ This project belongs to CS4675 SP24 Homework 4 Problem 2.
 -   Apache JMeter
 
     -   Tested with 5.6.3
-
     -   [Download Binaries .tgz or .zip](https://jmeter.apache.org/download_jmeter.cgi)
 
 -   Test Files to run in JMeter:
-
     -   [NO-CACHE.jmx](./Tests/NO-CACHE.jmx) tests no caching implementation.
-
     -   [CACHE.jmx](./Tests/CACHE.jmx) tests with caching implementation.
+
+## Folders & Files
+
+-   **docker**: includes 2 app, built and ran seperately.
+    -   **Cache**: SimpleApp with Cache
+    -   **Non-Cache**: SimpleApp without Cache
+-   **apache-jmeter-5.6.3**: JMeter tool to test
+-   **results**: include all raw test results obtained
+    -   **cache**: test results + graphs for cache app
+    -   **no cache**: test results + graphs for non-cache app
+-   **Tests**: 2 tests can run on JMeter
+
+-   **Final_Statistic.xlsx**: organized statistics from all the test from **results** folder.
 
 ## Installation
 
-In this project, to eliminate the complication of different OS. I have picked Docker to build and run the Tomcat server.
+In this project, to eliminate the complication of different OS. I have picked Docker to build and run the Tomcat server + App.
 
 In the Project Root, there are 2 folders, both are able to build alone with Docker:
 
@@ -175,7 +180,7 @@ out.println("<img src='"  + filePath +  "/>");
 
 -   At the end of the `GetObject` function, I print out "return object" in the console for the purpose of testing the cache.
 
-Assets in /webapp/WEB-INF directory:
+Assets in `/webapp/WEB-INF` directory:
 
 <img  src="./img/assets.png"  width=200 />
 
@@ -344,15 +349,15 @@ RETURN_CUSTOM_STATUS.message=Resource in cache
 
 ### Why this?
 
-Based on Jmeter documentation:
+Based on [Jmeter](https://jmeter.apache.org/usermanual/properties_reference.html#cache_manager) documentation:
 
-N.B. This property is currently a temporary solution for Bug 56162.
-
-More information: https://jmeter.apache.org/usermanual/properties_reference.html#cache_manager
+    N.B. This property is currently a temporary solution for Bug 56162.
 
 ### What is 304?
 
-The HTTP 304 Not Modified client redirection response code indicates that there is no need to retransmit the requested resources.
+According to [Mozilla:](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/304)
+
+    The HTTP 304 Not Modified client redirection response code indicates that there is no need to retransmit the requested resources.
 
 ## Testing Setup
 
@@ -436,6 +441,8 @@ On the navigation bar in Jmeter, navigate to the Green Button to run your tests.
 
 ## Performance
 
+Export from **Final_Statistic.xlsx** file.
+
 ![statistic](./img/statistic.png)
 
 ## Performance Testing without Cache
@@ -444,39 +451,34 @@ On the navigation bar in Jmeter, navigate to the Green Button to run your tests.
 
 -   **Latency** for each page is the average time (in ms) to load each request:
 
--   Homepage: 109 ms
+    -   Homepage: 109 ms
+    -   Page 1: 717 ms
+    -   Page 2: 461 ms
+    -   Page 3: 112 ms
+    -   Page 4: 131 ms
+    -   Page 5: 9 ms
 
--   Page 1: 717 ms
+-   A few things we can observe here:
 
--   Page 2: 461 ms
+    -   From 10 to 100 Users Tests, the number of samples and KBs Download don't change significantly.
 
--   Page 3: 112 ms
+    -   The Latency increases as the number of users increase.
 
--   Page 4: 131 ms
+    -   The Throughput is likely to be the same as the number of users increase.
 
--   Page 5: 9 ms
+    -   It seems there are no errors during each test.
 
-A few things we can observe here:
+    -   When there are 150 users:
 
--   From 10 to 100 Users Tests, the number of samples and KBs Download don't change significantly.
+    -   The number of samples starts to drop significantly.
 
--   The Latency increases as the number of users increase.
+    -   The server starts failing to process requests, resulting in KBs download drops.
 
--   The Throughput is likely to be the same as the number of users increase.
+    -   Latency increases significantly, more than 10 times that of 10 users.
 
--   It seems there are no errors during each test.
+    -   Throughput is inconsistent and tends to drop by a large amount.
 
--   When there are 150 users:
-
--   The number of samples starts to drop significantly.
-
--   The server starts failing to process requests, resulting in KBs download drops.
-
--   Latency increases significantly, more than 10 times that of 10 users.
-
--   Throughput is inconsistent and tends to drop by a large amount.
-
--   Error % increases as the test runs. Some pages get up to 90% of errors.
+    -   Error % increases as the test runs. Some pages get up to 90% of errors.
 
 Response Time for 50 users over 5 minutes.
 
@@ -488,39 +490,34 @@ Response Time for 50 users over 5 minutes.
 
 -   **Latency** for each page is the average time (in ms) to load each request:
 
--   Homepage: 0 ms
+    -   Homepage: 0 ms
+    -   Page 1: 0 ms
+    -   Page 2: 0 ms
+    -   Page 3: 0 ms
+    -   Page 4: 0 ms
+    -   Page 5: 0 ms
 
--   Page 1: 0 ms
+-   Why?
 
--   Page 2: 0 ms
+    -   The first time the latency can be a large number.
 
--   Page 3: 0 ms
+    -   However, each future request will be served from the caches. Which takes a very small amount of time.
 
--   Page 4: 0 ms
+    -   As time goes by, the average will keep decreasing to a very small number close to 0.
 
--   Page 5: 0 ms
+-   A few things we can observe here:
 
-Why?
+    -   From 10 to 150 Users Tests, the number of samples and KBs Download keeps increasing if there are more users.
 
--   The first time the latency can be a large number.
+    -   KBs Download increases not because of the images, HTML, or text. But there are some objects that are not significantly affecting the performance, therefore they are not being taken care of.
 
--   However, each future request will be served from the caches. Which takes a very small amount of time.
+    -   However, KBs Download slightly increases as we increase the number of users.
 
--   As time goes by, the average will keep decreasing to a very small number close to 0.
+    -   The Latency is a very small number (close to 0).
 
-A few things we can observe here:
+    -   As the number of users increase, the Throughput increases.
 
--   From 10 to 150 Users Tests, the number of samples and KBs Download keeps increasing if there are more users.
-
--   KBs Download increases not because of the images, HTML, or text. But there are some objects that are not significantly affecting the performance, therefore they are not being taken care of.
-
--   However, KBs Download slightly increases as we increase the number of users.
-
--   The Latency is a very small number (close to 0).
-
--   As the number of users increase, the Throughput increases.
-
--   It seems there are no errors during each test.
+    -   It seems there are no errors during each test.
 
 Response Time for 50 users over 5 minutes.
 
@@ -656,3 +653,17 @@ Starting with 100 users, the network starts to act slowly. 45,502 samples are wa
 | Page5    | 5         | 2044    | 0.00%   | 0.93318    | 26.63           |
 
 The web server needs a dedicated performance machine and a consistent network. For a toy web server in a home network, the ATT BGW320 can only handle about 80 devices with a high error %. 100 Users make it impossible for a home router.
+
+## Author
+
+Thuan Vo
+
+## References:
+
+-   [Codejava.net](https://www.codejava.net/java-servlet-tutorials)
+
+-   [Servlet - Display Image - GeeksforGeeks](https://www.geeksforgeeks.org/servlet-display-image/)
+
+-   [Bunny.net](https://bunny.net/blog/why-optimizing-your-images-with-base64-is-almost-always-a-bad-idea/#:~:text=Caching%20Issues&text=Due%20to%20how%20Base64%20works,as%20increases%20your%20bandwidth%20bill.)
+
+-   [Tomcat 10 Documentation](https://tomcat.apache.org/tomcat-10.1-doc/index.html)
